@@ -1,15 +1,4 @@
 par(mfrow = c(3,4))
-a
-b
-c
-d
-e
-f
-g
-h
-i
-j
-k
 
 # Long Straddle
 
@@ -23,7 +12,7 @@ call_value = ifelse(long_call_strike < spot_price, spot_price - long_call_strike
 put_value = ifelse(long_put_strike > spot_price, long_put_strike - spot_price, 0)
 premiums_cost = rep(long_call_premium + long_put_premium, length(spot_price))
 yield = call_value + put_value + premiums_cost
-a = {plot(y = yield, x = spot_price, type = "l", main = "Long Straddle")
+a = {plot(y = yield, x = spot_price, type = "l", main = "Long Straddle") +
 abline(h = 0, col = "red")}
 
 # Short Straddle
@@ -38,7 +27,7 @@ call_value = ifelse(short_call_strike < spot_price, - (spot_price - short_call_s
 put_value = ifelse(short_put_strike > spot_price, - (short_put_strike - spot_price), 0)
 premiums_cost = rep(short_call_premium + short_put_premium, length(spot_price))
 yield = call_value + put_value + premiums_cost
-b = {plot(y = yield, x = spot_price, type = "l", main = "Short Straddle")
+b = {plot(y = yield, x = spot_price, type = "l", main = "Short Straddle") +
 abline(h = 0, col = "red")}
 
 # Covered Call
@@ -52,7 +41,7 @@ stock_value = spot_price - stock_price
 call_value = ifelse(short_call_strike < spot_price, - (spot_price - short_call_strike), 0)
 premiums_cost = rep(short_call_premium, length(spot_price))
 yield = call_value + stock_value + premiums_cost
-c = {plot(y = yield, x = spot_price, type = "l", main = "Covered Call")
+c = {plot(y = yield, x = spot_price, type = "l", main = "Covered Call") +
 abline(h = 0, col = "red")}
 
 # Put Protective
@@ -66,7 +55,7 @@ stock_value = spot_price - stock_price
 put_value = ifelse(long_put_strike > spot_price, long_put_strike - spot_price, 0)
 premiums_cost = rep(long_put_premium, length(spot_price))
 yield = put_value + stock_value + premiums_cost
-plot(y = yield, x = spot_price, type = "l", main = "Put Protective")
+d = plot(y = yield, x = spot_price, type = "l", main = "Put Protective") +
 abline(h = 0, col = "red")
 
 # Long Strangle
@@ -81,7 +70,7 @@ call_value = ifelse(long_call_strike < spot_price, spot_price - long_call_strike
 put_value = ifelse(long_put_strike > spot_price, long_put_strike - spot_price, 0)
 premiums_cost = rep(long_call_premium + long_put_premium, length(spot_price))
 yield = call_value + put_value + premiums_cost
-d = {plot(y = yield, x = spot_price, type = "l", main = "Long Strangle")
+e = {plot(y = yield, x = spot_price, type = "l", main = "Long Strangle") +
 abline(h = 0, col = "red")}
 
 # Short Straddle
@@ -96,7 +85,7 @@ call_value = ifelse(short_call_strike < spot_price, - (spot_price - short_call_s
 put_value = ifelse(short_put_strike > spot_price, - (short_put_strike - spot_price), 0)
 premiums_cost = rep(short_call_premium + short_put_premium, length(spot_price))
 yield = call_value + put_value + premiums_cost
-e = {plot(y = yield, x = spot_price, type = "l", main = "Short Straddle")
+f = {plot(y = yield, x = spot_price, type = "l", main = "Short Straddle") +
 abline(h = 0, col = "red")}
 
 # Long Butterfly
@@ -114,7 +103,7 @@ short_call_value_2 = ifelse(short_call_strike_2 < spot_price, - (spot_price - sh
 long_call_value = ifelse(long_call_strike < spot_price, 2 * (spot_price - long_call_strike), 0)
 premiums_cost = rep(short_call_premium_1 + short_call_premium_2 + long_call_premium, length(spot_price))
 yield = short_call_value_1 + short_call_value_2 + long_call_value + premiums_cost
-f = {plot(y = yield, x = spot_price, type = "l", main = "Long Butterfly")
+g = {plot(y = yield, x = spot_price, type = "l", main = "Long Butterfly") +
 abline(h = 0, col = "red")}
 
 # Short Butterfly
@@ -132,8 +121,10 @@ short_call_value_2 = ifelse(short_call_strike_2 < spot_price, spot_price - short
 long_call_value = ifelse(long_call_strike < spot_price, -2 * (spot_price - long_call_strike), 0)
 premiums_cost = rep(long_call_premium_1 + long_call_premium_2 + short_call_premium, length(spot_price))
 yield = short_call_value_1 + short_call_value_2 + long_call_value + premiums_cost
-g = {plot(y = yield, x = spot_price, type = "l", main = "Short Butterfly")
+h = {plot(y = yield, x = spot_price, type = "l", main = "Short Butterfly") +
 abline(h = 0, col = "red")}
+
+# Long Bull Spread
 
 long_call_strike = 100
 long_call_premium = -12
@@ -145,7 +136,7 @@ short_call_value = ifelse(short_call_strike < spot_price, - (spot_price - short_
 long_call_value = ifelse(long_call_strike < spot_price, spot_price - long_call_strike, 0)
 premiums_cost = rep(long_call_premium + short_call_premium, length(spot_price))
 yield = short_call_value + long_call_value + premiums_cost
-h = {plot(y = yield, x = spot_price, type = "l", main = "Long Bull Spread")
+i = {plot(y = yield, x = spot_price, type = "l", main = "Long Bull Spread") +
 abline(h = 0, col = "red")}
 
 # Short Bull Spread
@@ -160,7 +151,7 @@ short_put_value = ifelse(short_put_strike > spot_price, - (short_put_strike - sp
 long_put_value = ifelse(long_put_strike > spot_price, long_put_strike - spot_price, 0)
 premiums_cost = rep(long_put_premium + short_put_premium, length(spot_price))
 yield = short_put_value + long_put_value + premiums_cost
-i = {plot(y = yield, x = spot_price, type = "l", main = "Short Bull Spread")
+j = {plot(y = yield, x = spot_price, type = "l", main = "Short Bull Spread") +
 abline(h = 0, col = "red")}
 
 # Long Bear Spread
@@ -175,7 +166,7 @@ short_call_value = ifelse(short_call_strike < spot_price, - (spot_price - short_
 long_call_value = ifelse(long_call_strike < spot_price, spot_price - long_call_strike, 0)
 premiums_cost = rep(long_call_premium + short_call_premium, length(spot_price))
 yield = short_call_value + long_call_value + premiums_cost
-j = {plot(y = yield, x = spot_price, type = "l", main = "Long Bear Spread")
+k = {plot(y = yield, x = spot_price, type = "l", main = "Long Bear Spread") +
 abline(h = 0, col = "red")}
 
 # Short Bull Spread
@@ -190,5 +181,5 @@ short_put_value = ifelse(short_put_strike > spot_price, - (short_put_strike - sp
 long_put_value = ifelse(long_put_strike > spot_price, long_put_strike - spot_price, 0)
 premiums_cost = rep(long_put_premium + short_put_premium, length(spot_price))
 yield = short_put_value + long_put_value + premiums_cost
-k = {plot(y = yield, x = spot_price, type = "l", main = "Short Bull Spread")
+l = {plot(y = yield, x = spot_price, type = "l", main = "Short Bull Spread") +
 abline(h = 0, col = "red")}
